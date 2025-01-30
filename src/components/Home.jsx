@@ -9,6 +9,7 @@ const Home = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Form submitted with:", { name, email, message });
 
     // Create the data to send in the email
     const feedback = {
@@ -22,6 +23,7 @@ const Home = () => {
       .send("service_vye4lad", "template_ylu876k", feedback, "93w7Sw4tdlOjcDJbo")
       .then(
         (response) => {
+          console.log("Email sent successfully:", response);
           alert("Message sent successfully!");
           
           // Reset form fields after successful submission
@@ -30,6 +32,7 @@ const Home = () => {
           setMessage("");
         },
         (error) => {
+          console.error("Error sending email:", error);
           alert("Error sending message: " + error.text);
         }
       );

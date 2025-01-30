@@ -16,6 +16,7 @@ const AuthPage = ({ setIsAuthenticated }) => {
     const payload = isLogin ? { email: formData.email, password: formData.password } : formData;
   
     try {
+      console.log(`Submitting ${isLogin ? "login" : "signup"} form with data:`, payload);
       const response = await fetch(`https://foodapp-1-0ryn.onrender.com${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -23,10 +24,9 @@ const AuthPage = ({ setIsAuthenticated }) => {
       });
   
       const data = await response.json();
+      console.log(`${isLogin ? "Login" : "Signup"} response:`, data);
       if (response.ok) {
         if (isLogin) {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("username", data.username);  // Save username to localStorage
           setIsAuthenticated(true);
           navigate("/home");
         } else {

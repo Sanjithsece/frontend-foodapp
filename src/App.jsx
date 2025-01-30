@@ -10,6 +10,8 @@ import AuthPage from "./components/AuthPage";
 const App = () => {
   const [cart, setCart] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [message, setMessage] = useState("");
+  
 
   const handleAddToCart = (item) => {
     setCart((prevCart) => {
@@ -24,7 +26,7 @@ const App = () => {
         return [...prevCart, { ...item, quantity: 1 }];
       }
     });
-    alert("Item added to cart!");
+    {message && <div style={popupStyles}>{message}</div>}
   };
 
   return (
@@ -39,12 +41,13 @@ const App = () => {
             <Route path="/menu" element={<MenuPage handleAddToCart={handleAddToCart} />} />
             <Route path="/orders" element={<OrderPage cart={cart} />} />
             <Route path="/order-confirmation" element={<CheckoutConfirmation />} />
-            <Route path="*" element={<Home />} /> {/* Redirect invalid routes */}
+            <Route path="*" element={<Home />} /> 
           </>
         )}
       </Routes>
     </div>
   );
+  
 };
 
 export default App;

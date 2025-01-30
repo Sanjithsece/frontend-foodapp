@@ -5,7 +5,7 @@ const OrderComponent = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch("https://foodapp-1-0ryn.onrender.com/api/place-order", {
+      const response = await fetch("https://foodapp-1-0ryn.onrender.com/api/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -15,9 +15,11 @@ const OrderComponent = () => {
       });
 
       const data = await response.json();
+      console.log("Order response:", data); // Log the response data
       if (response.ok) {
         alert("Order placed successfully!");
       } else {
+        console.error("Order placement error:", data.message);
         alert(data.message);
       }
     } catch (error) {
@@ -28,9 +30,7 @@ const OrderComponent = () => {
 
   return (
     <div>
-      {/* ...existing code... */}
       <button onClick={() => placeOrder({ /* order details */ })}>Place Order</button>
-      {/* ...existing code... */}
     </div>
   );
 };

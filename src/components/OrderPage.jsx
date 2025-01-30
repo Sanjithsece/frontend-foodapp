@@ -20,7 +20,7 @@ const OrderPage = ({ cart }) => {
 
   const handleCheckout = async () => {
     const token = localStorage.getItem("token");
-    const username = localStorage.getItem("username");  // Fetch the username from localStorage (if available)
+    const username = localStorage.getItem("username"); 
     
     if (!token) {
       alert("You must be logged in to place an order.");
@@ -36,7 +36,7 @@ const OrderPage = ({ cart }) => {
         },
         body: JSON.stringify({ 
           items: updatedCart, 
-          customerName: username || "Guest"  // Use username or default to "Guest"
+          customerName: username  
         }),
       });
   
@@ -56,7 +56,7 @@ const OrderPage = ({ cart }) => {
 
   return (
     <div className="order-page">
-      <h1>Your Orders</h1>
+      <h1>Your Cart Order Food..</h1>
       {updatedCart.length === 0 ? (
         <p>Your cart is empty!</p>
       ) : (
